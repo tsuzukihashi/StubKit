@@ -38,14 +38,14 @@ public struct Stub<T: Decodable> {
     /// Initialize a new `Stub` instance.
     ///
     /// - Parameter type: The type of the entity you want to stub.
-    public init(type: T.Type = T.self, provider: [StubProvider] = []) {
+    public init(type: T.Type = T.self, provider: [StubProvider] = [], maxSequenceLength: Int = 60, maxDepth: Int = 2) {
         self.init(
             type: type,
             provider: CompositStubProviderWith(
                 primaryProvider: BuiltinStubProvider(),
                 providers: provider
             ),
-            context: .init(maxSequenceLength: 60, maxDepth: 2)
+            context: .init(maxSequenceLength: maxSequenceLength, maxDepth: maxDepth)
         )
     }
 
